@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <script id="board-template" type="text/x-handlebars">
+        {{#each matrix}}
+        {{#each this}}
+        {{#if (isWall this)}}
+        <div class= "box-wall"></div>
+        {{else if (isCoin this)}}
+        <div class= "box"><i class="fas fa-gem"></i></div>
+        {{else if (isPlayer1 this)}}
+        <div class= "box"><i class="fas fa-chess-queen fa-3x"></i></div>
+        {{else if (isPlayer2 this)}}
+        <div class= "box"><i class="fas fa-chess-king fa-3x"></i></div>
+        {{else}}
+        <div class= "box"></div>
+        {{/if}}
+        {{/each}}
+        {{/each}}
+    </script>
+
+    <script id="start-template" type="text/x-handlebars">
+        <div class="select">
+            <div class="start-div"> Enter number of rows : <input id="row-num"type="text"></div>
+            <div class="start-div">Enter number of columns : <input id="col-num"type="text"></div>
+            <button id="start-btn"> Click to Start</button>
+        </div>
+    </script>
+
+    <script id="score-template" type="text/x-handlebars">
+        <div class="p1">{{p1.score}}</div>
+        <div class="p2">{{p2.score}}</div>
+    </script>
+
+    <script id="over-template" type="text/x-handlebars">
+        <div id="over">
+            <div class="p1">Player{{player}} Wins!</div>
+            <h1>Game Over!</h1>
+            <button id="restart">Back to start</button>
+        </div>
+    </script>
+
+    <div id="score"></div>
+    <div id="board">
+
+    </div>
+    
+    <script src="./node_modules/jquery/dist/jquery.js"></script>
+    <script src="./node_modules/handlebars/dist/handlebars.js"></script>
+    <script src="Renderer.js"></script>
+    <script src="Matrix.js"></script>
+    <script src="GoldRush.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
